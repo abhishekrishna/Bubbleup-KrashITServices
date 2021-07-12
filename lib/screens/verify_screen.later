@@ -1,0 +1,154 @@
+import 'dart:async';
+
+import 'package:bubble_up/screens/home_screen.dart';
+import 'package:bubble_up/services/Auth_Service.dart';
+import 'package:flutter/material.dart';
+import 'package:otp_text_field/otp_field.dart';
+import 'package:otp_text_field/otp_field_style.dart';
+import 'package:otp_text_field/style.dart';
+
+class VerifyScreen extends StatefulWidget {
+  @override
+  _VerifyScreenState createState() => _VerifyScreenState();
+}
+
+class _VerifyScreenState extends State<VerifyScreen> {
+  AuthClass authClass = AuthClass();
+  String verificationIdFinal = "";
+  String smsCode = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      resizeToAvoidBottomInset: false,
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
+          child: ConstrainedBox(
+            constraints:
+                BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+            child: Column(children: [
+              SizedBox(
+                height: 50,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width - 50,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: Colors.grey,
+                        margin: EdgeInsets.symmetric(horizontal: 12),
+                      ),
+                    ),
+                    Text(
+                      "Enter 6 digit OTP",
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: Colors.grey,
+                        margin: EdgeInsets.symmetric(horizontal: 12),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              otpField(),
+              SizedBox(
+                height: 40,
+              ),
+              InkWell(
+                onTap: () {
+                  authClass.signInwithPhoneNumber(
+                      verificationIdFinal, smsCode, context);
+                },
+                child: Container(
+                  height: 60,
+                  width: MediaQuery.of(context).size.width - 60,
+                  decoration: BoxDecoration(
+                      color: Color(0xffffcc00),
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Center(
+                    child: Text(
+                      "Lets Go",
+                      style: TextStyle(
+                          fontSize: 17,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (builder) => HomeScreen()),
+                      (route) => false);
+
+                  showSnackBar(context, "Skipped login");
+                },
+                child: Container(
+                  height: 60,
+                  width: MediaQuery.of(context).size.width - 60,
+                  decoration: BoxDecoration(
+                      color: Color(0xffffcc00),
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Center(
+                    child: Text(
+                      "Skip Login",
+                      style: TextStyle(
+                          fontSize: 17,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                ),
+              )
+            ]),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget otpField() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: OTPTextField(
+        length: 6,
+        width: MediaQuery.of(context).size.width - 50,
+        fieldWidth: 50,
+        otpFieldStyle: OtpFieldStyle(
+          backgroundColor: Color(0xff1d1d1d),
+          borderColor: Colors.white,
+        ),
+        style: TextStyle(fontSize: 17, color: Colors.white),
+        textFieldAlignment: MainAxisAlignment.spaceAround,
+        fieldStyle: FieldStyle.underline,
+        onCompleted: (pin) {
+          print("Completed: " + pin);
+          setState(() {
+            smsCode = pin;
+          });
+        },
+      ),
+    );
+  }
+
+  void showSnackBar(BuildContext context, String text) {
+    final snackBar = SnackBar(content: Text(text));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+}

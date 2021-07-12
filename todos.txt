@@ -1,0 +1,12 @@
+Change buttons to pill - done
+
+
+Logo to new png
+Remove Bubble up from welcome screen
+remove splash and use welcome screen as entry point
+
+Make all buttons similar
+change colors codes to cc00 
+change button texts to black
+make pin entry field background grey
+

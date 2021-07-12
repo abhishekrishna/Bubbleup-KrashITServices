@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "639211757645",
+    "project_id": "bubbleup-0",
+    "storage_bucket": "bubbleup-0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639211757645:android:410d52595e25f3d95abc04",
+        "android_client_info": {
+          "package_name": "io.bubbleup.krash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639211757645-37o1rcu9vusm488rtb4p6rijc1ld7k6k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.bubbleup.krash",
+            "certificate_hash": "18df75f98b558fdcd5c4b9a0b4736c78fc82b073"
+          }
+        },
+        {
+          "client_id": "639211757645-4qrmv8biock82ij3nhoif5ij6l3usr32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGhRyjtTfRp7bgA5fDLGgPZu7B4IC692k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639211757645-4qrmv8biock82ij3nhoif5ij6l3usr32.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
